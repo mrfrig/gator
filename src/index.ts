@@ -1,7 +1,30 @@
-import { setUser, readConfig } from "./config.js";
+import { runCommand, type CommandsRegistry } from "./commands.js";
+import { readConfig } from "./config.js";
+import { handlerLogin } from "./handlerLogin.js";
 
 function main() {
-  setUser("Franklin");
+  const registry: CommandsRegistry = {
+    login: handlerLogin
+  };
+  const argv = process.argv.slice(2);
+
+  if (argv.length === 0) {
+    console.error("Not enough arguments were provided");
+    process.exit(1);
+  }
+
+  const [cmdName, ...args] = argv;
+
+  try {
+    runCommand(registry, cmdName, ...args);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    } else {
+      console.error('An unknown error occurred');
+    }
+    process.exit(1);
+  }
   const config = readConfig();
   console.log(config);
 }
