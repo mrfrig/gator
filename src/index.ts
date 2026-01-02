@@ -1,5 +1,4 @@
 import { runCommand, type CommandsRegistry } from "./commands.js";
-import { readConfig } from "./config.js";
 import { handlerLogin } from "./handlerLogin.js";
 
 function main() {
@@ -25,8 +24,6 @@ function main() {
     }
     process.exit(1);
   }
-  const config = readConfig();
-  console.log(config);
 }
 
 main();
