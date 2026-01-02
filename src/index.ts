@@ -1,9 +1,11 @@
 import { runCommand, type CommandsRegistry } from "./commands.js";
 import { handlerLogin } from "./handlerLogin.js";
+import { handlerRegister } from "./handlerRegister.js";
 
-function main() {
+async function main() {
   const registry: CommandsRegistry = {
-    login: handlerLogin
+    login: handlerLogin,
+    register: handlerRegister,
   };
   const argv = process.argv.slice(2);
 
@@ -15,7 +17,7 @@ function main() {
   const [cmdName, ...args] = argv;
 
   try {
-    runCommand(registry, cmdName, ...args);
+    await runCommand(registry, cmdName, ...args);
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -24,6 +26,8 @@ function main() {
     }
     process.exit(1);
   }
+
+  process.exit(0);
 }
 
 main();
