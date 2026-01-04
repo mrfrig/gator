@@ -4,16 +4,12 @@ import { getUserByName } from "./lib/db/queries/users";
 import { printFeed } from "./printFeed";
 
 export async function handlerAddFeed(cmdName: string, ...args: string[]) {
-    if (args.length === 0) {
-        throw new Error("Name and URL are required");
-    }
-
-    if (args.length === 1) {
-        throw new Error("URL is required");
+    if (args.length !== 2) {
+        throw new Error(`usage: ${cmdName} <feed_name> <url>`);
     }
 
     const {currentUserName} = readConfig();
-    let user = await getUserByName(currentUserName);
+    const user = await getUserByName(currentUserName);
     
     const name = args[0];
     const url = args[1];
