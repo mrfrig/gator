@@ -12,6 +12,10 @@ export async function getUserByName(name: string) {
   return result;
 }
 
+export async function getUsers() {
+  return await db.select().from(users);
+}
+
 export async function resetUsers() {
   await db.delete(users);
 }
