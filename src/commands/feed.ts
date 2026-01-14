@@ -1,7 +1,6 @@
-import { readConfig } from "../config";
 import { createFeedFollow } from "../lib/db/queries/feedfollows";
 import { createFeed, getFeeds } from "../lib/db/queries/feeds";
-import { getUserById, getUserByName } from "../lib/db/queries/users";
+import { getUserById } from "../lib/db/queries/users";
 import { Feed, User } from "../lib/db/schema";
 
 export function printFeed(feed: Feed, user: User) {
@@ -9,13 +8,10 @@ export function printFeed(feed: Feed, user: User) {
   console.log("User:", user);
 }
 
-export async function handlerAddFeed(cmdName: string, ...args: string[]) {
+export async function handlerAddFeed(cmdName: string, user: User, ...args: string[]) {
     if (args.length !== 2) {
         throw new Error(`usage: ${cmdName} <feed_name> <url>`);
     }
-
-    const {currentUserName} = readConfig();
-    const user = await getUserByName(currentUserName);
     
     const name = args[0];
     const url = args[1];

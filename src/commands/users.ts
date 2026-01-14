@@ -5,8 +5,6 @@ export async function handlerRegister(cmdName: string, ...args: string[]) {
     if (args.length === 0) {
         throw new Error(`usage: ${cmdName} <username>`);
     }
-
-    
     
     const name = args[0];
     let result = await getUserByName(name);
