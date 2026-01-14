@@ -1,13 +1,9 @@
-import { runCommand, type CommandsRegistry } from "./commands.js";
-import { handlerAddFeed } from "./handlerAddfeed.js";
-import { handlerAgg } from "./handlerAgg.js";
-import { handlerFeeds } from "./handlerFeeds.js";
-import { handlerFollow } from "./handlerFollow.js";
-import { handlerFollowing } from "./handlerFollowing.js";
-import { handlerLogin } from "./handlerLogin.js";
-import { handlerRegister } from "./handlerRegister.js";
-import { handlerReset } from "./handlerReset.js";
-import { handlerUsers } from "./handlerUsers.js";
+import { handlerAgg } from "./commands/aggregate.js";
+import { runCommand, type CommandsRegistry } from "./commands/commands.js";
+import { handlerAddFeed, handlerFeeds } from "./commands/feed.js";
+import { handlerFollow, handlerFollowing } from "./commands/follows.js";
+import { handlerReset } from "./commands/reset.js";
+import { handlerLogin, handlerRegister, handlerUsers } from "./commands/users.js";
 
 async function main() {
   const registry: CommandsRegistry = {
