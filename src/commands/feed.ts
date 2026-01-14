@@ -21,7 +21,6 @@ export async function handlerAddFeed(cmdName: string, user: User, ...args: strin
     printFeed(feed, user);
 }
 
-
 export async function handlerFeeds() {
   const feeds = await getFeeds();
 
