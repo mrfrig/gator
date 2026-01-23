@@ -4,8 +4,12 @@ import { getUserById } from "../lib/db/queries/users";
 import { Feed, User } from "../lib/db/schema";
 
 export function printFeed(feed: Feed, user: User) {
-  console.log("Feed:", feed);
-  console.log("User:", user);
+  console.log(`* ID:            ${feed.id}`);
+  console.log(`* Created:       ${feed.createdAt}`);
+  console.log(`* Updated:       ${feed.updatedAt}`);
+  console.log(`* name:          ${feed.name}`);
+  console.log(`* URL:           ${feed.url}`);
+  console.log(`* User:          ${user.name}`);
 }
 
 export async function handlerAddFeed(cmdName: string, user: User, ...args: string[]) {
